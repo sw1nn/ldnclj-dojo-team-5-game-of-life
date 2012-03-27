@@ -22,9 +22,10 @@
 (defn index-page []
   (html5
     [:head
-      [:title "Hello World"]
+      [:title "Conways's Game Of Life (hit refresh!)"]
      (include-clojurescript "/js/main.js")
      (include-css "/styles/default.css")
      ]
     [:body
+     [:h1 "Conway's Game of Life (hit refresh!)"]
      (generate-table)]))

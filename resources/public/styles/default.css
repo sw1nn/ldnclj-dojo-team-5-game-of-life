@@ -1,7 +1,7 @@
-table {
+table,th, td {
    padding: 0px;
    margin: 0px;
-   border: 0px;
+   border:0 !important;
 }
 
 table tr td {
@@ -11,21 +11,34 @@ table tr td {
 }
 
 .live {
-   background: red;
+   background: #008000;
 }
 
-#button {
+.buttons {
+    width: 100%;
+    height: 50px;
+}
+
+.button {
    background: #bbbbbb;
    border-top: 2px solid #dddddd;
    border-left: 2px solid #dddddd;
    border-right: 2px solid #888888;
    border-bottom: 2px solid #888888;
+   padding: 0px 20px 0 20px;
+   margin: 10px 10px 10px 10px;
    font-family: sans-serif;
    color: black;
-   width: 75px;
+   
    line-height: 32px;
    height: 32px;
    text-align: center;
+}
+
+#content {
+   display: block;
+   border: 1px solid #008000;
+   margin: 20px 20px 20px 20px;
 }
 
 #button.clicked {

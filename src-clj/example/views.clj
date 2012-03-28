@@ -9,29 +9,20 @@
 ;
 ; Note that this would not be necessary for :simple or :advanced optimizations.
 
-(def ^:static WIDTH 100)
-(def ^:static HEIGHT 50)
-
 (defn- include-clojurescript [path]
   (list
     (javascript-tag "var CLOSURE_NO_DEPS = true;")
     (include-js path)))
 
-(defn generate-table []
-  [:table
-   (for [ y (range HEIGHT) ]
-     [:tr (for [x (range WIDTH)]
-            [:td {:id (str x "-" y)} ])])])
-
+(def title "London Clojure Dojo 27th March 2012 Team 5 - Game Of Life")
 (defn index-page []
   (html5
     [:head
-      [:title "Conways's Game Of Life (hit refresh!)"]
+      [:title title]
      (include-clojurescript "/js/main.js")
      (include-css "/styles/default.css")
      ]
     [:body
-     [:h1 "Conway's Game of Life (hit refresh!)"]
-     [:div {:id "button"} "Start"]
-     (generate-table)])
-)
+     [:h1 title]
+     [:div {:id "buttons"}]
+     [:div {:id "content"} "Wait For It....."]]))

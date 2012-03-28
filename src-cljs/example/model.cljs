@@ -5,44 +5,59 @@
 
 (def ^:static WIDTH 100)
 (def ^:static HEIGHT 50)
+(def ^:static SIZE (* WIDTH HEIGHT))
 
-(defn- init-random []
-  (map #(if (< 0.2 (rand 1)) :live :dead) (range (* WIDTH HEIGHT))))
+(defn- fill-random []
+  (vec (map (fn [_] (if (< 0.6 (rand 1)) :live :dead)) (range SIZE))))
 
-(def ^{:private true} grid (atom (init-random)))
-
-(def ^{:private true} timer (goog.Timer. (/ 1000 60)))
+(def ^{:private true} grid (atom (fill-random)))
 
 (defn- living? [x] (= x :live))
-(defn- alive-this-time? [x] (living? (grid x)))
+(defn- alive-now? [x] (living? (grid-now x)))
 
-(defn- alive-next-time? [offset]
-  (let [indexes ((juxt #(- % 1) #(+ % 1) #(- % WIDTH) #(+ % WIDTH)
-                       #(- % (inc WIDTH)) #(+ % (inc WIDTH))
-                       #(- % (dec WIDTH)) #(+ % (dec WIDTH))) offset)
-        vals (map grid indexes)
-        num (count (filter living? vals))]
+(def timer (atom nil))
+
+
+(defn- adjacent-indices [index]
+  (filter #(< -1 % SIZE) ((juxt #(- % 1)
+                                #(+ % 1)
+                                #(- % WIDTH)
+                                #(+ % WIDTH)
+                                #(- % (inc WIDTH))
+                                #(+ % (inc WIDTH))
+                                #(- % (dec WIDTH))
+                                #(+ % (dec WIDTH))) index)))
+
+(defn- alive-next-time? [index val]
+  (let [vals-at-indices (map grid-now (adjacent-indices index))
+        nlive (count (filter living? vals-at-indices))]
     (cond
-     (or (> num 3) (< num 2)) :dead
-     (= num 3) :live
-     (and (= num 2) (alive-this-time? x)) :live
+     (or (> nlive 3) (< nlive 2)) :dead
+     (= nlive 3) :live
+     (and (= nlive 2) (alive-now? index)) :live
      :else
      :dead)))
 
+(def grid-now)
+
 (defn- update-model []
-  (log/debug "update-model")
-  (swap! grid #(init-random)))
-         ;#(map-indexed alive-next-time? %)))
-
-
+  (log/info "update-model")
+  
+  (binding [grid-now @grid]
+    (swap! grid #(vec (map-indexed alive-next-time? %))))
+  (log/debug "update-model-end"))
 
 (defn add-listener [f]
   (add-watch grid nil
              (fn [k r o n]
                (f n))))
 
-(defn poll []
+(defn start-timer []
   (let [timer (goog.Timer. 1000)]
-    (do (update-model)
-        (. timer (start))
-        (events/listen timer goog.Timer/TICK update-model))))
+    (update-model)
+    (. timer (start))
+    (events/listen timer goog.Timer/TICK update-model)))
+
+(defn toggle-run []
+  (log/info "toggle-run!")
+  (start-timer))

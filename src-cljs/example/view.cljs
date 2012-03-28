@@ -1,31 +1,39 @@
 (ns example.view
   (:require [example.model :as model]
             [example.log :as log]
-            [example.repl :as repl]
             [goog.dom :as dom]
-            [goog.events :as events]
-            [clojure.browser.repl :as repl]))
-
-(def ^:static WIDTH 100)
-(def ^:static HEIGHT 50)
-
+            [goog.events :as events]))
 
 (defn- by-id [id]
   (.getElement goog.dom id))
 
 (defn- set-cell-state [x y state]
-  (log/debug "(set-cell-state " x " " y " " state ")")
   (if-let [e (by-id (str x "-" y))]
     (if (= state :dead)
       (.removeAttribute e "class")
-      (.setAttribute e "class" (name state)))))
+      (.setAttribute e "class" (name state))))xs)
 
 (defn update-view [grid]
-  (doall (map-indexed #(let [x (mod % WIDTH)
-                             y (Math/floor (/ % HEIGHT))]
-                         (set-cell-state x y %2)) grid)))
+  (log/debug "update-view" grid)
+  (doall (map-indexed #(let [x (mod % model/WIDTH)
+                             y (Math/floor (/ % model/WIDTH))]
+                         (set-cell-state x y %2)) grid))
+  (log/debug "update-view-end"))
 
-(model/add-listener update-view)
 
-(set! (.-onload js/window) model/poll)
+(defn- create-table []
+  (set! (.-innerHTML (by-id "content"))  
+             (apply str (flatten
+                         ["<table id='game-of-life'>"
+                          (for [ y (range model/HEIGHT) ]
+                            ["<tr>" (for [x (range model/WIDTH)]
+                                      [(str "<td id='" (str x "-" y) "'>") ])
+                             "</tr>"] )
+                          "</table>"]))))
+(defn initialise []
+  (create-table)
+  (model/toggle-run)
+  (model/add-listener update-view))
+
+(set! (.-onload js/window) initialise)
 

@@ -1,2 +1,3 @@
-.lein-cljsbuild-compiler-0/*
-.lein-cljsbuild-repl/*
+.lein-cljsbuild-compiler-0
+.lein-cljsbuild-repl
+resources/public/js/main.js

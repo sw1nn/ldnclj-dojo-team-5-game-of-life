@@ -1,18 +1,18 @@
-# London CLojure Dojo 27/03/2012 - Team 5 - Game Of Life
+# London Clojure Dojo 27/03/2012 - Team 5 - Game Of Life
 
 At the London Clojure Dojo on 27/03/2012 Team 5 produced a smoke and
 mirrors implementation of the classic [Conway's Game Of Life][5]. The 
-code shown there is the first checkin to this repo. But the
-implementation has now been mostly complete and is working (for
+code we demo'd there is the first checkin to this repo. But the
+implementation has now been mostly completed and is working (for
 certain definitions of working)
 
-It's based on [lein-cljsbuild][1],
-[Ring][2], and [Compojure][3].  But trys to focus only on the
-clojurescript specifics (i.e. very minimal changes to the Ring and
-Compojure stuff that come in the lein-cljsbuild simple example project)
+It's based on [lein-cljsbuild][1], [Ring][2], and [Compojure][3].  
+It tries to focus only on the clojurescript specifics (i.e. very minimal 
+changes to the Ring and Compojure stuff that come in the lein-cljsbuild 
+simple example project)
 
-It demonstrates the use of
-lein-cljsbuild to build ClojureScript into JavaScript.
+It demonstrates the use of lein-cljsbuild to build ClojureScript into 
+JavaScript.
 
 Changes made since the dojo are:
 
@@ -25,8 +25,13 @@ Changes made since the dojo are:
     clojure/clojurescript.
   * incorporate and update game logic supplied by Daniel Barlow
     (another member of the team) 
-    
 
+Suggestions for further enhancements (pull requests welcome)
+
+  * Implement some UI controls to start/stop, reload randomized board etc.
+  * Add some UI to allow loading of well known start points [The Glider Gun][6] looks good!
+  * Death / Life animations? 
+  * 
 To play around with this example project, you will first need
 [Leiningen][4] installed.
 
@@ -43,3 +48,5 @@ Now, point your web browser at `http://localhost:3000`, and see the web app in a
 [2]: https://github.com/mmcgrana/ring
 [3]: https://github.com/weavejester/compojure
 [4]: https://github.com/technomancy/leiningen
+[5]: http://en.wikipedia.org/wiki/Conway's_Game_of_Life
+[6]: http://en.wikipedia.org/wiki/Gun_(cellular_automaton)

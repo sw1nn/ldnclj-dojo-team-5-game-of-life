@@ -1,12 +1,15 @@
+table {
+   padding: 0px;
+   margin: 0px;
+   border: 0px;
+}
+
 table tr td {
-   width: 50px;
-   height: 50px;
+   width: 10px;
+   height: 10px;
+   background: white;
 }
 
 .live {
-   background: black;
-}
-
-.dead {
    background: red;
 }

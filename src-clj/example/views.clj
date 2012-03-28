@@ -8,6 +8,10 @@
 ; off that feature here by setting CLOSURE_NO_DEPS.
 ;
 ; Note that this would not be necessary for :simple or :advanced optimizations.
+
+(def ^:static WIDTH 100)
+(def ^:static HEIGHT 50)
+
 (defn- include-clojurescript [path]
   (list
     (javascript-tag "var CLOSURE_NO_DEPS = true;")
@@ -15,9 +19,9 @@
 
 (defn generate-table []
   [:table
-   (for [ x (range 10) ]
-     [:tr (for [y (range 10)]
-            [:td {:id (str x "-" y) :class "dead"} "&nbsp;"])])])
+   (for [ y (range HEIGHT) ]
+     [:tr (for [x (range WIDTH)]
+            [:td {:id (str x "-" y)} ])])])
 
 (defn index-page []
   (html5

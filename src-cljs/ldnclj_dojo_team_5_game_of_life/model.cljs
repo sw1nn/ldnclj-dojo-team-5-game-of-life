@@ -32,7 +32,7 @@
                                 #(+ % (dec WIDTH))) index)))
 
 (defn- alive-next-time?
-  "Core logic routine. Applies the rules of Conway's game of life.
+  "Main logic routine. Applies the rules of Conway's game of life.
 
    1. Any live cell with fewer than two live neighbours dies, as if caused by under-population.
    2. Any live cell with two or three live neighbours lives on to the next generation.

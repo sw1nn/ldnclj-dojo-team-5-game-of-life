@@ -1,4 +1,7 @@
 (ns example.log)
 
+(def debugEnabled false)
+
 (defn debug [ & s ]
-  (.log js/console (apply str (cons "[DEBUG] " s))))
+  (when debugEnabled
+    (.log js/console (apply str (cons "[DEBUG] " s)))))

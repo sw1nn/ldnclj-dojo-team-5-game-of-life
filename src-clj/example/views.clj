@@ -32,4 +32,6 @@
      ]
     [:body
      [:h1 "Conway's Game of Life (hit refresh!)"]
-     (generate-table)]))
+     [:div {:id "button"} "Start"]
+     (generate-table)])
+)

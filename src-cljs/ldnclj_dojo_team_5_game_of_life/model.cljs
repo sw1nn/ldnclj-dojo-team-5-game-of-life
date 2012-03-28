@@ -32,7 +32,7 @@
                                 #(+ % (dec WIDTH))) index)))
 
 (defn- alive-next-time?
-  "Core logic routine. Applies the rules of Conway's game of life.
+  "Main logic routine. Applies the rules of Conway's game of life.
 
    1. Any live cell with fewer than two live neighbours dies, as if caused by under-population.
    2. Any live cell with two or three live neighbours lives on to the next generation.
@@ -55,7 +55,7 @@
 (def ^{:doc "TODO: better way to handle passing the complete grid into alive-next-time?. This has a global smell to it..."} grid-now)
 
 (defn- update-model
-  "Applies the core logic of alive-next-time? to each cell in the grid"
+  "Applies the main logic of alive-next-time? to each cell in the grid"
   []
   (log/info "update-model")
   

@@ -1,7 +1,7 @@
 (ns ^{ :doc "UI concerns, displays the grid and listens for changes in the model, updating when it sees them"}
-  example.view
-  (:require [example.model :as model]
-            [example.log :as log]
+  ldnclj-dojo-team-5-game-of-life.view
+  (:require [ldnclj-dojo-team-5-game-of-life.model :as model]
+            [ldnclj-dojo-team-5-game-of-life.log :as log]
             [goog.dom :as dom]
             [goog.events :as events]))
 

@@ -1,4 +1,4 @@
-(ns example.views
+(ns ldnclj-dojo-team-5-game-of-life.views
   (:use [hiccup core page-helpers]))
 
 ; When using {:optimizations :whitespace}, the Google Closure compiler combines

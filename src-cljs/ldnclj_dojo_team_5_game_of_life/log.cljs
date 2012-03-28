@@ -1,4 +1,4 @@
-(ns example.log)
+(ns ldnclj-dojo-team-5-game-of-life.log)
 
 (def debugEnabled false)
 (def infoEnabled true)

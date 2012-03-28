@@ -1,7 +1,7 @@
-(ns example.model ^{:doc "Holds the 'model' i.e. state of the grid and logic to move the grid to it's next state."}
+(ns ldnclj-dojo-team-5-game-of-life.model ^{:doc "Holds the 'model' i.e. state of the grid and logic to move the grid to it's next state."}
   (:require [goog.Timer :as Timer]
             [goog.events :as events]
-            [example.log :as log]))
+            [ldnclj-dojo-team-5-game-of-life.log :as log]))
 
 (def ^:static WIDTH 100)
 (def ^:static HEIGHT 50)

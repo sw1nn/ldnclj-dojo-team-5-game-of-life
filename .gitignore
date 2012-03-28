@@ -1,3 +1,5 @@
 .lein-cljsbuild-compiler-0
 .lein-cljsbuild-repl
 resources/public/js/main.js
+/.lein-deps-sum
+/.lein-plugins/checksum

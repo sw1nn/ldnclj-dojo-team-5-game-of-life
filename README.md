@@ -14,6 +14,19 @@ Compojure stuff that come in the lein-cljsbuild simple example project)
 It demonstrates the use of
 lein-cljsbuild to build ClojureScript into JavaScript.
 
+Changes made since the dojo are:
+
+  * larger 'board' (100x50) by default, see constants in
+    ``model.cljs`` 
+  * Timer works to update the board periodically.
+  * grid state is stored in an ``atom`` and the view observes changes
+    to the state by adding a listener which in turns sits on top of
+    the ``(add-watch)`` functionality for atoms in
+    clojure/clojurescript.
+  * incorporate and update game logic supplied by Daniel Barlow
+    (another member of the team) 
+    
+
 To play around with this example project, you will first need
 [Leiningen][4] installed.
 

@@ -1,7 +1,17 @@
-# cljsbuild-example-simple
+# London CLojure Dojo 27/03/2012 - Team 5 - Game Of Life
 
-This is an example web application that uses [lein-cljsbuild][1],
-[Ring][2], and [Compojure][3].  It demonstrates the use of
+At the London Clojure Dojo on 27/03/2012 Team 5 produced a smoke and
+mirrors implementation of the classic [Conway's Game Of Life][5]. The 
+code shown there is the first checkin to this repo. But the
+implementation has now been mostly complete and is working (for
+certain definitions of working)
+
+It's based on [lein-cljsbuild][1],
+[Ring][2], and [Compojure][3].  But trys to focus only on the
+clojurescript specifics (i.e. very minimal changes to the Ring and
+Compojure stuff that come in the lein-cljsbuild simple example project)
+
+It demonstrates the use of
 lein-cljsbuild to build ClojureScript into JavaScript.
 
 To play around with this example project, you will first need

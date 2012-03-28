@@ -10,12 +10,11 @@
 (defn- fill-random
   "Generate some random data to seed the "
   []
-  (vec (map (fn [_] (if (< 0.6 (rand 1)) :live :dead)) (range SIZE))))
+  (vec (map (fn [_] (if (< 0.6 (rand 1)) :live)) (range SIZE))))
 
 (def ^{:private true} grid (atom (fill-random)))
 
-(defn- living? [x] (= x :live))
-(defn- alive-now? [x] (living? (grid-now x)))
+(defn- alive-now? [x] (when x (grid-now x)))
 
 (def timer (atom nil))
 
@@ -43,13 +42,13 @@
   See http://en.wikipedia.org/wiki/Conway's_Game_of_Life for full details "
   [index val]
   (let [vals-at-indices (map grid-now (adjacent-indices index))
-        nlive (count (filter living? vals-at-indices))]
+        nlive (count (remove nil? vals-at-indices))]
     (cond
-     (or (> nlive 3) (< nlive 2)) :dead
-     (= nlive 3) :live
-     (and (= nlive 2) (alive-now? index)) :live
+     (or (> nlive 3) (< nlive 2)) nil
+     (= nlive 3) :alive
+     (and (= nlive 2) (alive-now? index)) :alive
      :else
-     :dead)))
+     nil)))
 
 
 

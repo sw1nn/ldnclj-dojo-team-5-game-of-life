@@ -12,7 +12,7 @@
   "adds a live CSS class attr to live cells, cells are <TD> elements in an HTML table with id of <x>-<y>"
   [x y state]
   (if-let [e (by-id (str x "-" y))]
-    (if (= state :dead)
+    (if (nil? state)
       (.removeAttribute e "class")
       (.setAttribute e "class" (name state))))xs)
 

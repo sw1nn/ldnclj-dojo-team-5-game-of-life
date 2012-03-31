@@ -11,19 +11,20 @@
 (defn- set-cell-state
   "adds a live CSS class attr to live cells, cells are <TD> elements in an HTML table with id of <x>-<y>"
   [x y state]
+  (log/debug x "," y ,"=" state)
   (if-let [e (by-id (str x "-" y))]
-    (if (nil? state)
-      (.removeAttribute e "class")
-      (.setAttribute e "class" (name state))))xs)
+    (if state
+      (.setAttribute e "class" "alive")
+      (.removeAttribute e "class"))))
 
 (defn update-view
   "callback that is called when the grid state changes, processes the grid sequence and updates the corresponding cells in an HTML table"
   [grid]
-  (log/debug "update-view" grid)
+  (log/info "update-view:" (count grid))
   (doall (map-indexed #(let [x (mod % model/WIDTH)
                              y (Math/floor (/ % model/WIDTH))]
                          (set-cell-state x y %2)) grid))
-  (log/debug "update-view-end"))
+  (log/info "update-view-end"))
 
 
 (defn- create-table

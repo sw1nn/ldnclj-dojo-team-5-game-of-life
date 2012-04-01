@@ -3,8 +3,8 @@
             [goog.events :as events]
             [ldnclj-dojo-team-5-game-of-life.log :as log]))
 
-(def ^:static WIDTH 20)
-(def ^:static HEIGHT 20)
+(def ^:static WIDTH 40)
+(def ^:static HEIGHT 30)
 (def ^{:static true :private true} INDICES  (partition WIDTH (range (* WIDTH HEIGHT))))
 
 (def *print-fn* log/info)
@@ -19,11 +19,11 @@
 (def timer (atom nil))
 
 (defn- adjacent-indices-internal [i]
-  (let [x        (mod i HEIGHT)
-        y        (Math/floor (/ i HEIGHT))
+  (let [x        (mod i WIDTH)
+        y        (Math/floor (/ i WIDTH))
         n        (dec y)                ; #rows to drop from north
-        e        (- HEIGHT x 2)         ; #cols to drop from east
-        s        (- WIDTH y 2)          ; #rows to drop from south
+        e        (- WIDTH x 2)         ; #cols to drop from east
+        s        (- HEIGHT y 2)          ; #rows to drop from south
         w        (dec x)]               ; #cols to drop from west
     
     (vec (remove #(= % i)                    ; remove supplied index
@@ -85,8 +85,7 @@ cl
   []
   (log/info "update-model")
 
-  (time
-   (swap! *grid* #(vec (map-indexed (partial next-gen-state  %) %))))
+  (swap! *grid* #(vec (time (map-indexed (partial next-gen-state  %) %))))
 
   (log/debug "update-model-end"))
 

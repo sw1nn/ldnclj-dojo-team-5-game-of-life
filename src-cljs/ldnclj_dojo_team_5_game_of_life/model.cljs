@@ -71,8 +71,7 @@
 cl
   See http://en.wikipedia.org/wiki/Conway's_Game_of_Life for full details "
   [grid index alive?]
-  (let [vals-at-indices (map grid (adjacent-indices index))
-        n (count (remove nil? vals-at-indices))]
+  (let [n (count (keep grid (adjacent-indices index)))]
     (cond
       (or (> n 3) (< n 2)) nil
       (= n 3) :alive

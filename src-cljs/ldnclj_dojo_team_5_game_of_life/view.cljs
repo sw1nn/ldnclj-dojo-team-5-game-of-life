@@ -30,7 +30,7 @@
 (defn- create-table
   "Build an HTML table to act as our grid: TODO hiccup like library for the client side (moustauche does this?)"
   []
-  (set! (.-innerHTML (by-id "content"))  
+  (set! (.-innerHTML (by-id "game-of-life-content"))  
              (apply str (flatten
                          ["<table id='game-of-life'>"
                           (for [ y (range model/HEIGHT) ]
@@ -38,7 +38,7 @@
                                       [(str "<td id='" (str x "-" y) "'>") ])
                              "</tr>"] )
                           "</table>"]))))
-(defn initialise []
+(defn ^:export initialise []
   (create-table)
   (model/toggle-run)
   (model/add-listener update-view))
@@ -48,4 +48,5 @@
 ;; DOM event. We need to wait for the page to have loaded before we
 ;; start accessing the DOM.
 (set! (.-onload js/window) initialise)
+
 

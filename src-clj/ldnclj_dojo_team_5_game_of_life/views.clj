@@ -24,5 +24,4 @@
      ]
     [:body
      [:h1 title]
-     [:div {:id "buttons"}]
-     [:div {:id "content"} "Wait For It....."]]))
+     [:div {:id "game-of-life-content"} "Wait For It....."]]))

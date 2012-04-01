@@ -84,7 +84,7 @@ cl
   []
   (log/info "update-model")
 
-  (swap! *grid* #(vec (time (map-indexed (partial next-gen-state  %) %))))
+  (swap! *grid* #(vec (map-indexed (partial next-gen-state  %) %)))
 
   (log/debug "update-model-end"))
 

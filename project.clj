@@ -10,5 +10,9 @@
     :builds [{:source-path "src-cljs"
               :compiler {:output-to "resources/public/js/main.js"
                          :optimizations :whitespace
-                         :pretty-print true}}]} 
+                         :pretty-print true}}
+             {:source-path "src-cljs"
+              :compiler {:output-to "resources/public/js/gol-main-p.js"
+                         :optimizations :advanced
+                         :pretty-print false}}]} 
   :ring {:handler ldnclj-dojo-team-5-game-of-life.routes/app})

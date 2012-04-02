@@ -1,7 +1,7 @@
 (ns ldnclj-dojo-team-5-game-of-life.log)
 
 (def debugEnabled false)
-(def infoEnabled true)
+(def infoEnabled false)
 
 (defn- log [level s]
   (.log js/console (apply str (cons (str "[" level "] ") s))))

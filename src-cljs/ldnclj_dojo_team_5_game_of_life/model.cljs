@@ -16,8 +16,6 @@
 
 (def ^{:private true} *grid* (atom []))
 
-(def timer (atom nil))
-
 (defn- adjacent-indices-internal [i]
   (let [x        (mod i WIDTH)
         y        (Math/floor (/ i WIDTH))
